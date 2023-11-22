@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message Sender</title>
+    <title>Send SMS</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Message Sender</h1>
-    <form id="messageForm">
+    <div class="container">
+        <h2>Send SMS</h2>
         <label for="phoneNumber">Phone Number:</label>
-        <input type="tel" id="phoneNumber" name="phoneNumber" required>
-        <button type="button" onclick="sendMessage()">Send Message</button>
-    </form>
-
+        <input type="text" id="phoneNumber" placeholder="Enter phone number">
+        <button onclick="sendMessage()">Send Message</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
