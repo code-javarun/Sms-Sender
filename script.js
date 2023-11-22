@@ -1,33 +1,26 @@
 function sendMessage() {
-    var phoneNumber = document.getElementById("phoneNumber").value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
 
-    // Use an API or a service to send the message
-    var apiUrl = 'https://console.twilio.com/us1/account/keys-credentials/api-keys/SK6f1e53073ce295db2dae9adf95058fb4';  // Replace with the actual API endpoint
+    // Replace 'YOUR_TWILIO_ACCOUNT_SID', 'YOUR_TWILIO_AUTH_TOKEN', and 'YOUR_TWILIO_PHONE_NUMBER' with your Twilio credentials
+    const accountSid = 'ACf0172da159f45aa9576fff3a2021ff2c';
+    const authToken = '3e547ea726632689ff57a71701799279';
+    const twilioPhoneNumber = '+18169259637';
 
-    // You may need an API key or authentication to use the messaging service
-    var apiKey = 'SK6f1e53073ce295db2dae9adf95058fb4';  // Replace with the actual API key
+    // Message to be sent
+    const message = `Dear customer, your account number ending with (+91xxxxxx9063) has been activated`;
 
-    var message = "Dear customer, your account number ending with (+91xxxxxx9063) has been activated.";
-
-    // Use fetch or AJAX to send a POST request to the messaging service
-    fetch(apiUrl, {
+    // Use fetch to send a request to your server
+    fetch(`/send-sms?to=${phoneNumber}&message=${encodeURIComponent(message)}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + apiKey,
-        },
-        body: JSON.stringify({
-            phoneNumber: phoneNumber,
-            message: message,
-        }),
+            'Authorization': `Basic ${btoa(`${accountSid}:${authToken}`)}`
+        }
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Message sent successfully:', data);
-        // Optionally, you can show a success message on the webpage
+        console.log(data);
+        alert('Message sent successfully!');
     })
-    .catch(error => {
-        console.error('Error sending message:', error);
-        // Optionally, you can show an error message on the webpage
-    });
+    .catch(error => console.error('Error:', error));
 }
