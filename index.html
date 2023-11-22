@@ -1,34 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Message Sender</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 50px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sender</title>
 </head>
 <body>
-  <h1>Message Sender</h1>
-  <label for="phoneNumber">Enter Phone Number:</label>
-  <input type="tel" id="phoneNumber" placeholder="e.g., +919876543210" required>
-  <button onclick="sendMessage()">Send Message</button>
+    <h1>Message Sender</h1>
+    <form id="messageForm">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required>
+        <button type="button" onclick="sendMessage()">Send Message</button>
+    </form>
 
-  <script>
-    function sendMessage() {
-      const phoneNumber = document.getElementById('phoneNumber').value;
-      // You can add additional validation for the phone number here
-
-      // Assuming you have a server endpoint to handle the message sending
-      fetch(`/send-message?phoneNumber=${phoneNumber}`)
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error('Error:', error));
-    }
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
